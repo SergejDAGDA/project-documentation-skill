@@ -1,14 +1,14 @@
 {
-  "name": "agent-project-documentation",
+  "name": "project-documentation-skill",
   "interface": {
-    "displayName": "SergejDAGDA Project Documentation"
+    "displayName": "Project Documentation"
   },
   "plugins": [
     {
       "name": "project-documentation",
       "source": {
         "source": "url",
-        "url": "https://github.com/SergejDAGDA/agent-project-documentation.git",
+        "url": "https://github.com/SergejDAGDA/project-documentation-skill.git",
         "ref": "main"
       },
       "policy": {
