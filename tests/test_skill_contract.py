@@ -96,6 +96,25 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("git diff --cached --check", gates)
         self.assertIn("untracked", skill)
 
+    def test_repository_identity_is_consistent_across_package_metadata(self):
+        canonical = "https://github.com/SergejDAGDA/project-documentation-skill"
+        plugin = json.loads(PLUGIN.read_text(encoding="utf-8"))
+        claude = json.loads(CLAUDE_PLUGIN.read_text(encoding="utf-8"))
+        marketplace = json.loads((ROOT / ".agents/plugins/marketplace.json").read_text(encoding="utf-8"))
+
+        self.assertEqual(plugin["name"], "project-documentation")
+        self.assertEqual(claude["name"], "project-documentation")
+        self.assertEqual(marketplace["name"], "project-documentation-skill")
+        self.assertEqual(marketplace["plugins"][0]["name"], "project-documentation")
+        self.assertEqual(marketplace["plugins"][0]["source"]["url"], canonical + ".git")
+        for manifest in (plugin, claude):
+            self.assertEqual(manifest["homepage"], canonical)
+            self.assertEqual(manifest["repository"], canonical)
+        self.assertEqual(plugin["interface"]["websiteURL"], canonical)
+        self.assertIn("name: project-documentation", SKILL.read_text(encoding="utf-8"))
+        self.assertIn("project-documentation-skill", README.read_text(encoding="utf-8"))
+        self.assertIn("project-documentation-skill", README_RU.read_text(encoding="utf-8"))
+
     def test_release_version_metadata_is_consistent(self):
         plugin_version = json.loads(PLUGIN.read_text(encoding="utf-8"))["version"]
         claude_version = json.loads(CLAUDE_PLUGIN.read_text(encoding="utf-8"))["version"]

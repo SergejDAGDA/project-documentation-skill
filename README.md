@@ -2,13 +2,15 @@
 
 [Русская версия](README.ru.md)
 
-A reusable Agent Skill for turning source repositories into structured, maintainable, and reusable project knowledge.
+A portable Agent Skill for repository documentation, reusable project knowledge extraction, implementation reconciliation, and targeted repository diagnostics.
 
-Repository name: `agent-project-documentation`
+GitHub repository: `SergejDAGDA/project-documentation-skill` (repository identity, not the installed Skill ID).
 
-Installed Agent Skill name: `project-documentation`
+Installed Agent Skill name: `project-documentation` (directory `skills/project-documentation/`).
 
-Invoke it as: `$project-documentation`
+Invoke it as: `$project-documentation`. The `-skill` suffix belongs **only** to the GitHub repository name. The former repository name `agent-project-documentation` remains a historical alias.
+
+Plugin manifests and the optional Marketplace catalog use the new repository identity; existing user-level plugin registrations must be migrated separately, if any. No other agent runtime is claimed as tested merely because compatible packaging is present.
 
 The skill creates and maintains two documentation levels:
 

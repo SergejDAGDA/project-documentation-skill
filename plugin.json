@@ -7,8 +7,8 @@
     "name": "Sergej DAGDA",
     "url": "https://github.com/SergejDAGDA"
   },
-  "homepage": "https://github.com/SergejDAGDA/agent-project-documentation",
-  "repository": "https://github.com/SergejDAGDA/agent-project-documentation",
+  "homepage": "https://github.com/SergejDAGDA/project-documentation-skill",
+  "repository": "https://github.com/SergejDAGDA/project-documentation-skill",
   "license": "MIT",
   "keywords": [
     "documentation",
@@ -30,7 +30,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/SergejDAGDA/agent-project-documentation",
+    "websiteURL": "https://github.com/SergejDAGDA/project-documentation-skill",
     "defaultPrompt": [
       "Audit this repository with project-documentation. Start read-only and tell me which documentation modes are applicable before changing files.",
       "Update only maintained documentation affected by the current implementation changes and report coordination or project-memory inconsistencies separately without rewriting them unless explicitly requested.",
