@@ -1,6 +1,6 @@
 ---
 name: project-documentation
-description: Extract, create, audit, and maintain repository documentation as reusable project knowledge. Use when a user wants GitHub-ready presentation documentation, detailed internal functional or technical documentation, plan-versus-implementation reconciliation, continuation and project-contamination diagnostics, repository knowledge extraction for later reuse, documentation synchronization after code changes, release documentation checks, or documentation of an Agent Skill or plugin itself.
+description: Extract, create, audit, and maintain repository documentation as reusable project knowledge. Use during authorized implementation of new or changed features, CLI commands, APIs, configuration, or operational behavior to assess and update affected maintained documentation before completion, even without a separate documentation request. Also use for repository documentation, reconciliation, audits, knowledge extraction, release documentation, and Agent Skill or plugin documentation.
 ---
 
 # Project Documentation
@@ -48,6 +48,18 @@ When the request is ambiguous, for example "apply this skill to the current repo
 
 Do not ask a clarifying question when read-only audit can safely make progress.
 
+### Documentation completion gate for implementation tasks
+
+When an agent is performing an **authorized implementation task** and this skill is available, route documentation impact through `project-documentation` before declaring the implementation complete, even if the user did not separately request documentation. Authorization to implement includes narrow, directly affected maintained documentation updates unless repository-local instructions or the user explicitly prohibit those writes. This is distinct from an ambiguous standalone request to "apply this skill", which remains read-only by default.
+
+1. Before implementation, identify the affected maintained documentation and whether observable behavior, CLI commands and options, API contracts, configuration, dependencies, data formats, errors or exit codes, security boundaries, or operating instructions may change.
+2. After implementation and relevant tests, compare actual changed behavior against the appropriate existing maintained documents. For new CLI commands, check discoverability, invocation, required dependencies, options, outputs, and failure behavior where applicable.
+3. Update only the materially affected documents in the same authorized task. Prefer existing canonical locations; do not manufacture a new document or duplicate content merely to satisfy this gate.
+4. If no documentation changes are needed, report `Documentation impact: none` with a concrete reason grounded in the diff. If a required update is blocked by an explicit no-write instruction, missing authority, or inaccessible source, report the unresolved gap and do not declare documentation complete.
+5. Before an implementation Completion Checkpoint or equivalent task acceptance, confirm changed behavior and maintained documentation agree. A Project Memory entry or successful structural `documentation_audit.py` result does **not** substitute for this semantic comparison. Treat a material missing documentation update within authorized scope as a completion blocker.
+
+Project-local instructions and ownership boundaries still govern. Project-memory/coordination files remain separately owned and are never modified by ordinary documentation update. Do not escalate a read-only review into a write task or perform unrelated edits.
+
 ## Documentation ownership boundaries
 
 Documentation can coexist with project-memory or coordination artifacts that have a different maintenance contract.
@@ -93,7 +105,7 @@ Report missing coverage, stale claims, broken internal links, unsupported claims
 
 ### update
 
-Use after project changes when the user requests documentation synchronization or another write operation.
+Use after project changes when the user requests documentation synchronization or another write operation, including authorized implementation tasks whose changed behavior requires directly affected documentation updates under the implementation completion gate.
 
 Identify changed implementation surfaces, map them to affected documentation, update only the impacted knowledge, and preserve unaffected authored material.
 
@@ -453,6 +465,7 @@ Before completion, read `references/quality-gates.md` and check:
 - evidence provenance and authority by claim domain when materially relevant
 - temporal identity separation when materially relevant
 - capability coverage
+- implementation-to-documentation semantic completion when functionality changed
 - separation of functional contract from implementation
 - presentation clarity
 - navigation
@@ -489,6 +502,7 @@ Report:
 - evidence provenance, verification confidence, temporal role, or precise revision/state identity when materially relevant
 - validation scripts or tests actually run
 - unresolved documentation gaps
+- for implementation-linked updates, `Documentation impact: updated` with affected paths, or `Documentation impact: none` with reason; disclose blocked gaps
 - canonical project-local output root (or explicit noncanonical external snapshot location), link-check scope, and the number of documents checked
 
 Do not report documentation as complete when known material gaps remain.
