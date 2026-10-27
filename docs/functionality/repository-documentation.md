@@ -83,6 +83,12 @@ Coordination artifacts are identified by purpose as well as location. Handoff/ch
 
 Broken links or stale statements inside those artifacts are reported rather than silently repaired by ordinary `update`.
 
+### Implementation completion gate
+
+During authorized implementation, assess documentation impact before work, then compare the completed change against the existing maintained documentation. Update only the necessary canonical material even without a separately phrased documentation request. A new CLI command should be discoverable with applicable invocation, dependencies, options, output and error behavior. When there is no material documentation impact, record `Documentation impact: none` and the reason. If documentation updates are prohibited or cannot be authorized, disclose the gap rather than silently claiming documentation completion.
+
+Project Memory updates and the structural Markdown audit do not demonstrate semantic agreement. Coordination ownership and read-only-only requests remain protected.
+
 ### Failure and uncertainty behavior
 
 When code, tests, existing docs, configuration, external operational evidence, or coordination evidence conflict, the workflow reports the disagreement instead of silently converting one version into fact.

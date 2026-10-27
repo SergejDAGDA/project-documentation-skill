@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.6
+
+Implementation-to-documentation completion routing.
+
+- During authorized implementation, assess and update only materially affected maintained documentation before declaring completion, without requiring a separate documentation request
+- Require a concrete `Documentation impact: none` rationale when no update is warranted; report blocked documentation changes instead of claiming completion
+- Keep ambiguous standalone requests read-only and keep Project Memory/coordination ownership separate
+- Explicitly distinguish semantic code-to-documentation review from the structural Markdown audit; add contract regression coverage
+
 ## 0.2.5
 
 Pre-commit Markdown hygiene for durable project knowledge.

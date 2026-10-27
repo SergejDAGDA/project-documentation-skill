@@ -96,6 +96,31 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("git diff --cached --check", gates)
         self.assertIn("untracked", skill)
 
+    def test_implementation_documentation_completion_gate_is_explicit(self):
+        skill = SKILL.read_text(encoding="utf-8")
+        gates = GATES.read_text(encoding="utf-8")
+        contract = (ROOT / "docs/functionality/repository-documentation.md").read_text(encoding="utf-8")
+        for expected in (
+            "### Documentation completion gate for implementation tasks",
+            "authorized implementation task",
+            "CLI commands and options",
+            "Documentation impact: none",
+            "documentation_audit.py",
+            "Project Memory",
+            "completion blocker",
+            "read-only",
+        ):
+            self.assertIn(expected, skill)
+        for expected in (
+            "## Implementation documentation completion",
+            "Updating only Project Memory",
+            "zero-error result is not evidence of semantic synchronization",
+            "documentation writes are explicitly prohibited",
+        ):
+            self.assertIn(expected, gates)
+        self.assertIn("### Implementation completion gate", contract)
+        self.assertIn("without a separately phrased documentation request", contract)
+
     def test_repository_identity_is_consistent_across_package_metadata(self):
         canonical = "https://github.com/SergejDAGDA/project-documentation-skill"
         plugin = json.loads(PLUGIN.read_text(encoding="utf-8"))
@@ -118,12 +143,12 @@ class SkillContractTests(unittest.TestCase):
     def test_release_version_metadata_is_consistent(self):
         plugin_version = json.loads(PLUGIN.read_text(encoding="utf-8"))["version"]
         claude_version = json.loads(CLAUDE_PLUGIN.read_text(encoding="utf-8"))["version"]
-        self.assertEqual(plugin_version, "0.2.5")
+        self.assertEqual(plugin_version, "0.2.6")
         self.assertEqual(VERSION_FILE.read_text(encoding="utf-8").strip(), plugin_version)
         self.assertEqual(claude_version, plugin_version)
-        self.assertIn("## 0.2.5", CHANGELOG.read_text(encoding="utf-8"))
-        self.assertIn("Version 0.2.5", README.read_text(encoding="utf-8"))
-        self.assertIn("Версия 0.2.5", README_RU.read_text(encoding="utf-8"))
+        self.assertIn("## 0.2.6", CHANGELOG.read_text(encoding="utf-8"))
+        self.assertIn("Version 0.2.6", README.read_text(encoding="utf-8"))
+        self.assertIn("Версия 0.2.6", README_RU.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

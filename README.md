@@ -95,6 +95,8 @@ If the request does not name a mode or clearly request file changes, the skill s
 
 Finding stale documentation does not automatically authorize an `update`.
 
+For an already authorized implementation task, the skill performs a documentation impact check before completion. New or changed commands, interfaces, dependencies, and operating behavior are reflected in the affected maintained docs as part of that task; a documentation-neutral change is explicitly justified. A Project Memory checkpoint or clean Markdown audit alone is not evidence that documentation matches the new behavior. Explicit no-write rules still prevail.
+
 Project-memory and coordination artifacts are recognized by purpose as well as directory. Strong signals include filenames such as `*HANDOFF*.md` and `*CHECKPOINT*.md`, exact files such as `STATUS.md`, `DECISIONS.md`, and `SESSION_LOG.md`, primary headings that identify a handoff/checkpoint/status/log, and clearly identified project-memory directories.
 
 Those artifacts can be read as evidence when repository-local instructions require them or when they materially help establish current context, but ordinary documentation maintenance does not automatically rewrite them. Conflicts are reported under `Out-of-scope coordination findings` unless their maintenance is explicitly included in the request.
@@ -367,9 +369,7 @@ Reuse notes identify portable behavior, boundaries, assumptions, dependencies, a
 
 ## Status
 
-Version 0.2.5 adds an opt-in Git-whitespace check that is required for
-authored Markdown before handoff to local version control. It preserves
-normal read-only audit behavior and never reformats unrelated files.
+Version 0.2.6 adds an implementation documentation completion gate: during authorized feature work, check and update affected maintained docs before marking the task complete. The read-only default for ambiguous documentation requests and separate project-memory ownership remain unchanged.
 
 ## License
 
