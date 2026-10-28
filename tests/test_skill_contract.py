@@ -121,6 +121,25 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("### Implementation completion gate", contract)
         self.assertIn("without a separately phrased documentation request", contract)
 
+    def test_completed_plan_does_not_duplicate_live_checkpoint_status(self):
+        skill = SKILL.read_text(encoding="utf-8")
+        gates = GATES.read_text(encoding="utf-8")
+        completion = skill.split("### Documentation completion gate for implementation tasks", 1)[1].split(
+            "\n## Documentation ownership boundaries", 1
+        )[0]
+        for required in (
+            "BUILD_PLAN.md",
+            "a second live checkpoint",
+            "pending final checkpoint commit",
+            "preserving independent approved requirements",
+            "Preserve active plans for larger projects",
+            "separately coordination-owned",
+            "AGENTS.md",
+        ):
+            self.assertIn(required, completion)
+        self.assertIn("task-relevant build plans", gates)
+        self.assertIn("Route obsolete live phase claims", gates)
+
     def test_repository_identity_is_consistent_across_package_metadata(self):
         canonical = "https://github.com/SergejDAGDA/project-documentation-skill"
         plugin = json.loads(PLUGIN.read_text(encoding="utf-8"))
