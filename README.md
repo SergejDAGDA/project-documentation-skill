@@ -23,7 +23,9 @@ It can also document Agent Skills and plugin repositories themselves.
 
 The stable GitHub release entrypoint is `https://github.com/SergejDAGDA/project-documentation-skill/releases/latest`. Before publishing, verify the tested exact source commit and matching `vX.Y.Z` tag, the installable `skills/project-documentation/VERSION` marker, and both plugin manifest versions. Publish a non-draft, non-prerelease GitHub Release marked **Latest** and verify that marker after publication. Prereleases must not replace the stable channel; the moving `main` branch alone is not a release identity.
 
-To update, first check the verified latest stable release and compare its version with the installed skill/plugin. The installation route depends on whether Codex is using a manual skills folder or the author-owned native plugin Marketplace; use the corresponding supported native update path, preserving existing authored files and checking marketplace provenance. Do not mix duplicate manual and plugin Skill IDs. Updating is an explicit user action, not a side effect of the `Latest` label. Open a fresh Codex Desktop session and confirm skill activation before reporting success.
+The native Codex plugin Marketplace is a separate moving-source channel. Its current `.agents/plugins/marketplace.json` has `source.ref` set to `main`, not a stable release tag. A Marketplace refresh may therefore install a newer or different `main` snapshot rather than the exact GitHub `Latest` release. Neither a successful refresh nor a matching version string proves release-tag provenance.
+
+For an exact stable release, use the verified `vX.Y.Z` tagged source and check the installed payload against that revision. If using the native Marketplace, follow its supported update flow and independently verify the installed source revision before claiming a match to a stable GitHub Release. Preserve authored files, verify marketplace origin, and avoid duplicate manual and plugin Skill IDs. Updating requires explicit user approval: the `Latest` label installs nothing. Open a fresh Codex Desktop session and confirm skill activation before reporting success.
 
 ## Why this exists
 
