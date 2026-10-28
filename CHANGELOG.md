@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.7 (source prepared, release not yet published)
+## 0.2.7
 
 Execution-plan closeout and durable coordination-state boundaries.
 
