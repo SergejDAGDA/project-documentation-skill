@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.7 (source prepared, release not yet published)
+
+Execution-plan closeout and durable coordination-state boundaries.
+
+- During authorized implementation completion, reconcile only task-relevant build plans and navigation links, retiring exhausted small-MVP plans only after preserving independent accepted requirements, or retaining them as static/historical evidence.
+- Reject still-live pending Git checkpoint claims in completed plans without treating feature Planned/Implemented labels as transient Git state.
+- Preserve active plans and route separately owned stale AGENTS/coordination claims to their respective owners.
+- Add a focused static contract regression and quality-gate guidance.
+- Synchronize both plugin manifests and installable VERSION and document the stable GitHub Release Latest channel.
+
 ## 0.2.6
 
 Implementation-to-documentation completion routing.
