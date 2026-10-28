@@ -40,6 +40,7 @@ For an authorized implementation that changes observable functionality, commands
 - Pass without edits when the diff has no material documentation impact and the result states `Documentation impact: none` with a specific rationale.
 - Fail when a materially new command or behavior is absent from its canonical maintained documentation while the task is declared fully complete. Updating only Project Memory or a session log is not sufficient.
 - If documentation writes are explicitly prohibited or ownership is unavailable, report the unresolved gap instead of claiming documentation completion or overriding the restriction.
+- For a completed implementation, task-relevant build plans must not keep a pending Git checkpoint as live state. Retain approved requirements and open work, and treat historical plan stages as historical. Route obsolete live phase claims in separately owned `AGENTS.md` or coordination artifacts to their owners rather than changing those files without authority.
 - Do not require new documentation files, generic checklists, or unrelated refactors for small or documentation-neutral changes.
 
 The structural `documentation_audit.py` checks Markdown hygiene and links; a zero-error result is not evidence of semantic synchronization. Inspect the code-to-doc change surface directly. When a project has separate completion/Checkpoint ownership, leave those coordination records to their own workflow.
