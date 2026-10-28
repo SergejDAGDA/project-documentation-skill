@@ -19,6 +19,14 @@ The skill creates and maintains two documentation levels:
 
 It can also document Agent Skills and plugin repositories themselves.
 
+## Releases and updates
+
+The stable GitHub release entrypoint is `https://github.com/SergejDAGDA/project-documentation-skill/releases/latest`. Before publishing, verify the tested exact source commit and matching `vX.Y.Z` tag, the installable `skills/project-documentation/VERSION` marker, and both plugin manifest versions. Publish a non-draft, non-prerelease GitHub Release marked **Latest** and verify that marker after publication. Prereleases must not replace the stable channel; the moving `main` branch alone is not a release identity.
+
+The native Codex plugin Marketplace is a separate moving-source channel. Its current `.agents/plugins/marketplace.json` has `source.ref` set to `main`, not a stable release tag. A Marketplace refresh may therefore install a newer or different `main` snapshot rather than the exact GitHub `Latest` release. Neither a successful refresh nor a matching version string proves release-tag provenance.
+
+For an exact stable release, use the verified `vX.Y.Z` tagged source and check the installed payload against that revision. If using the native Marketplace, follow its supported update flow and independently verify the installed source revision before claiming a match to a stable GitHub Release. Preserve authored files, verify marketplace origin, and avoid duplicate manual and plugin Skill IDs. Updating requires explicit user approval: the `Latest` label installs nothing. Open a fresh Codex Desktop session and confirm skill activation before reporting success.
+
 ## Why this exists
 
 A README is not enough to preserve a project's knowledge.
@@ -369,7 +377,7 @@ Reuse notes identify portable behavior, boundaries, assumptions, dependencies, a
 
 ## Status
 
-Version 0.2.6 adds an implementation documentation completion gate: during authorized feature work, check and update affected maintained docs before marking the task complete. The read-only default for ambiguous documentation requests and separate project-memory ownership remain unchanged.
+Version 0.2.7 adds task-relevant execution-plan closeout to the implementation documentation completion gate: during authorized feature work, check and update affected maintained docs before marking the task complete. The read-only default for ambiguous documentation requests and separate project-memory ownership remain unchanged.
 
 ## License
 

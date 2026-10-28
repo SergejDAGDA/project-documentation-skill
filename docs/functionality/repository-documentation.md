@@ -87,7 +87,7 @@ Broken links or stale statements inside those artifacts are reported rather than
 
 During authorized implementation, assess documentation impact before work, then compare the completed change against the existing maintained documentation. Update only the necessary canonical material even without a separately phrased documentation request. A new CLI command should be discoverable with applicable invocation, dependencies, options, output and error behavior. When there is no material documentation impact, record `Documentation impact: none` and the reason. If documentation updates are prohibited or cannot be authorized, disclose the gap rather than silently claiming documentation completion.
 
-Project Memory updates and the structural Markdown audit do not demonstrate semantic agreement. Coordination ownership and read-only-only requests remain protected.
+Project Memory updates and the structural Markdown audit do not demonstrate semantic agreement. For completed implementation, reconcile only task-relevant execution plans (such as a `BUILD_PLAN.md`) and their documentation links: preserve approved unique requirements while retiring exhausted small-MVP plans or marking them clearly historical/static. A plan must not claim a pending Git checkpoint as live current state after that checkpoint. Active plans remain intact. Coordination-owned plans and `AGENTS.md` remain outside ordinary documentation mutation; report their stale phase claims to the appropriate owner. Coordination ownership and read-only-only requests remain protected.
 
 ### Failure and uncertainty behavior
 
